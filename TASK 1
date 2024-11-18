@@ -1,0 +1,71 @@
+# Simple Quiz Game in Python
+
+# List of questions, options, and correct answers
+questions = [
+    {
+        "question": "What is the capital of France?",
+        "options": ["A) Berlin", "B) Madrid", "C) Paris", "D) Rome"],
+        "answer": "C"
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "options": ["A) Earth", "B) Mars", "C) Venus", "D) Jupiter"],
+        "answer": "B"
+    },
+    {
+        "question": "Who wrote 'Romeo and Juliet'?",
+        "options": ["A) Charles Dickens", "B) William Shakespeare", "C) Jane Austen", "D) Mark Twain"],
+        "answer": "B"
+    },
+    {
+        "question": "What is the largest ocean on Earth?",
+        "options": ["A) Atlantic Ocean", "B) Indian Ocean", "C) Arctic Ocean", "D) Pacific Ocean"],
+        "answer": "D"
+    },
+    {
+        "question": "What is the boiling point of water in Celsius?",
+        "options": ["A) 100°C", "B) 90°C", "C) 110°C", "D) 120°C"],
+        "answer": "A"
+    }
+]
+
+# Function to ask questions
+def ask_question(question_data):
+    print(question_data["question"])
+    for option in question_data["options"]:
+        print(option)
+    
+    answer = input("Your answer (A/B/C/D): ").strip().upper()
+    
+    return answer == question_data["answer"]
+
+# Main game loop
+def quiz_game():
+    score = 0
+    total_questions = len(questions)
+
+    print("Welcome to the Quiz Game!")
+    print("You will be asked 5 multiple-choice questions. Let's see how well you do!")
+
+    for question in questions:
+        if ask_question(question):
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer was {question['answer']}.\n")
+    
+    print(f"Your final score: {score}/{total_questions}")
+    
+    # Provide feedback
+    if score == total_questions:
+        print("Excellent! You got a perfect score!")
+    elif score >= total_questions * 0.7:
+        print("Great job! You did well!")
+    elif score >= total_questions * 0.5:
+        print("Not bad, but you can do better!")
+    else:
+        print("Looks like you need some more practice. Better luck next time!")
+
+# Run the quiz
+if __name__ == "__main__":
+    quiz_game()
